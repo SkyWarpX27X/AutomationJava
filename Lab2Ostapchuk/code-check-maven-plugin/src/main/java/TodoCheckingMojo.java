@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 // TODO for test
 @Mojo(name = "todo", defaultPhase = LifecyclePhase.VALIDATE)
-public class CodeCheckingMojo extends AbstractMojo {
+public class TodoCheckingMojo extends AbstractMojo {
     @Parameter(defaultValue = "${project}", required = true)
     private MavenProject project;
 
@@ -43,7 +43,7 @@ public class CodeCheckingMojo extends AbstractMojo {
         Pattern pattern = Pattern.compile("(// ?TODO.*?$)|(/\\* ?TODO.*?\\*/)", Pattern.MULTILINE | Pattern.DOTALL);
         Matcher matcher = pattern.matcher(file);
         while (matcher.find()){
-            res.add(matcher.group());
+            res.add(matcher.group().replaceAll("(//)|(/\\*)|(\\*/)", "").strip());
         }
         return res;
     }
