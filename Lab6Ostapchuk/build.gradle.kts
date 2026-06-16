@@ -17,6 +17,7 @@ publishing{
     }
     publications {
         register<MavenPublication>("gpr") {
+            artifactId = "lab6ostapchuk"
             from(components["java"])
         }
     }
