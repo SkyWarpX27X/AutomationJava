@@ -1,6 +1,25 @@
 plugins {
     id("java")
     id("checkstyle")
+    id("maven-publish")
+}
+
+publishing{
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/SkyWarpX27X/AutomationJava")
+            credentials {
+                username = System.getenv("USERNAME")
+                password = System.getenv("PASSWORD")
+            }
+        }
+    }
+    publications {
+        register<MavenPublication>("gpr") {
+            from(components["java"])
+        }
+    }
 }
 
 group = "org.example"

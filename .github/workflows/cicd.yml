@@ -33,7 +33,6 @@ jobs:
     - name: Add permission for gradlew
       run: chmod +x gradlew
 
-
     - name: Analyze code
       run: ./gradlew checkstyleMain
       
@@ -43,7 +42,8 @@ jobs:
     - name: Build jar
       run: ./gradlew jar
 
-    - name: Upload jar to repository
-      uses: actions/upload-artifact@v7.0.1
-      with:
-        path: Lab6Ostapchuk/
+    - name: Upload jar to repository as package
+      run: ./gradlew publish
+      env:
+        USERNAME: ${{ github.actor }}
+        PASSWORD: ${{ secrets.GITHUB_TOKEN }}
