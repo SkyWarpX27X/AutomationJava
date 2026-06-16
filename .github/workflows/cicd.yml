@@ -6,12 +6,12 @@ on:
   pull_request:
     branches: [ "master" ]
 
-defaults:
-  run:
-    working-directory: Lab6Ostapchuk
-
 jobs:
   analyze-test-upload:
+
+    defaults:
+      run:
+        working-directory: Lab6Ostapchuk
 
     runs-on: ubuntu-latest
     permissions:
