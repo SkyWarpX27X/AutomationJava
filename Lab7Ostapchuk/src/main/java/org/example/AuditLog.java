@@ -1,5 +1,5 @@
 package org.example;
 
-public class AuditLog {
-
+public interface AuditLog {
+    void writeLog(int fromId, int toId, int amount, boolean success);
 }
